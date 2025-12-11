@@ -13,7 +13,7 @@ export default function handler(
 
     const functions = {
         POST: () => {
-            return res.status(200).json({ prize: 'iphone' });
+            return res.status(200).json({ prize: '100' });
         }
     }
 
