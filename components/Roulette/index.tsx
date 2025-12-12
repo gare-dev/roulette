@@ -275,11 +275,13 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                                         >
                                             <image
                                                 href={segment.imagem}
+                                                xlinkHref={segment.imagem}
                                                 x="0"
                                                 y="0"
                                                 width="1"
                                                 height="1"
                                                 preserveAspectRatio="xMidYMid slice"
+                                                crossOrigin="anonymous"
                                             />
                                         </pattern>
                                     );
