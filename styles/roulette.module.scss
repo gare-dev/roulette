@@ -11,21 +11,6 @@
     position: relative;
     overflow: hidden;
 
-    // Efeito de fundo animado com pontos
-    &::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        // background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-        background-size: 50px 50px;
-        animation: moveBackground 20s linear infinite;
-        pointer-events: none;
-    }
-
-    // Efeito de partículas flutuantes
     &::after {
         content: '';
         position: absolute;
@@ -33,44 +18,179 @@
         left: 0;
         width: 100%;
         height: 100%;
-        // background-image:
-        //     radial-gradient(circle, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
-        //     radial-gradient(circle, rgba(255, 215, 0, 0.3) 1px, transparent 1px);
-        background-size: 200px 200px, 300px 300px;
-        background-position: 0 0, 50px 50px;
-        animation: floatParticles 15s ease-in-out infinite;
+        background:
+            radial-gradient(circle at 20% 30%, rgba(127, 190, 59, 0.15) 0%, transparent 40%),
+            radial-gradient(circle at 80% 70%, rgba(74, 124, 44, 0.15) 0%, transparent 40%),
+            radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.7) 0%, rgba(0, 20, 0, 0.85) 100%);
+        z-index: 0;
         pointer-events: none;
     }
-}
 
-@keyframes moveBackground {
-    0% {
-        transform: translate(0, 0);
+    // Bokeh effect
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            radial-gradient(circle, rgba(127, 190, 59, 0.3) 2px, transparent 2px),
+            radial-gradient(circle, rgba(255, 215, 0, 0.2) 3px, transparent 3px),
+            radial-gradient(circle, rgba(74, 124, 44, 0.25) 2px, transparent 2px);
+        background-size: 200px 200px, 300px 300px, 250px 250px;
+        background-position: 0 0, 100px 100px, 50px 150px;
+        animation: floatBokeh 20s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
     }
 
-    100% {
-        transform: translate(50px, 50px);
+}
+
+.title {
+    position: relative;
+    z-index: 10;
+    font-size: 4rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+    text-shadow:
+        0 0 10px rgba(127, 190, 59, 0.8),
+        0 0 20px rgba(127, 190, 59, 0.6),
+        0 0 30px rgba(127, 190, 59, 0.4),
+        3px 3px 6px rgba(0, 0, 0, 0.8);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    @media (max-width: 768px) {
+        font-size: 2.5rem;
     }
 }
 
-@keyframes floatParticles {
+.lightsContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 560px;
+    height: 560px;
+    border-radius: 50%;
+    z-index: 5;
+    pointer-events: none;
+
+    @media (max-width: 768px) {
+        width: 440px;
+        height: 440px;
+    }
+
+    @media (max-width: 480px) {
+        width: 360px;
+        height: 360px;
+    }
+}
+
+.light {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, #fff 15%, #FFD700 45%, #FFA500 100%);
+    box-shadow:
+        0 0 15px 2px #FFD700,
+        0 0 30px 4px rgba(255, 215, 0, 0.6),
+        0 0 45px 6px rgba(255, 140, 0, 0.4),
+        inset 0 0 10px rgba(255, 255, 255, 0.6);
+    animation: lightStarPulse 1.2s ease-in-out infinite;
+    filter: brightness(1.1);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 1.5px;
+        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.6), transparent);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+        width: 50px;
+        height: 1.5px;
+        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.6), transparent);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    }
+
+    &:nth-child(2n) {
+        animation-delay: 0.2s;
+        background: radial-gradient(circle, #fff 0%, #fff 20%, #7FBE3B 50%, #4A7C2C 100%);
+        box-shadow:
+            0 0 30px 5px #7FBE3B,
+            0 0 60px 10px #7FBE3B,
+            0 0 90px 15px #4A7C2C,
+            inset 0 0 15px rgba(255, 255, 255, 0.8);
+
+        &::before,
+        &::after {
+            background: linear-gradient(90deg, transparent, #7FBE3B, transparent);
+            box-shadow: 0 0 20px #7FBE3B;
+        }
+    }
+
+    &:nth-child(3n) {
+        animation-delay: 0.4s;
+    }
+
+    &:nth-child(4n) {
+        animation-delay: 0.6s;
+    }
+
+    &:nth-child(5n) {
+        animation-delay: 0.8s;
+    }
+}
+
+@keyframes lightStarPulse {
 
     0%,
     100% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.5;
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1.5);
     }
 
     50% {
-        transform: translateY(-20px) translateX(10px);
-        opacity: 0.8;
+        opacity: 0.7;
+        transform: scale(0.9) rotate(45deg);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes floatBokeh {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translate(30px, -30px);
+        opacity: 0.9;
     }
 }
 
 .indicator {
     position: absolute;
-    top: 8rem;
-    z-index: 15;
+    top: 5.5rem;
+    z-index: 20;
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
 }
 
@@ -97,8 +217,117 @@
     }
 }
 
+@keyframes buttonBounce {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -53%) scale(1.05);
+    }
+}
+
+.pedestal {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -60px;
+}
+
+.pedestalTop {
+    width: 280px;
+    height: 40px;
+    background: linear-gradient(180deg, #6a8a2d 0%, #5a7823 50%, #4a6519 100%);
+    border-radius: 15px 15px 5px 5px;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.5),
+        inset 0 3px 8px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 8px rgba(0, 0, 0, 0.4);
+    border: 4px solid #3d5012;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        height: 8px;
+        background: linear-gradient(90deg, transparent, #5a7823, transparent);
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(90, 120, 35, 0.6);
+    }
+}
+
+.pedestalMiddle {
+    width: 240px;
+    height: 140px;
+    background: linear-gradient(180deg, #4a6519 0%, #3d5012 30%, #2d3e0c 70%, #1f2809 100%);
+    box-shadow:
+        inset 0 0 30px rgba(0, 0, 0, 0.6),
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        inset 5px 0 15px rgba(0, 0, 0, 0.4),
+        inset -5px 0 15px rgba(0, 0, 0, 0.4);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 15px;
+        left: 8%;
+        width: 84%;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+        border-radius: 2px;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 15px;
+        left: 8%;
+        width: 84%;
+        height: 5px;
+        background: linear-gradient(90deg, transparent, rgba(127, 190, 59, 0.5), transparent);
+        border-radius: 2px;
+        box-shadow: 0 0 10px rgba(127, 190, 59, 0.4);
+    }
+}
+
+.pedestalBottom {
+    width: 300px;
+    height: 45px;
+    background: linear-gradient(180deg, #3d5012 0%, #2d3e0c 50%, #1a2206 100%);
+    border-radius: 0 0 20px 20px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.7),
+        inset 0 -5px 15px rgba(0, 0, 0, 0.6),
+        inset 0 3px 10px rgba(90, 120, 35, 0.2);
+    border: 4px solid #1f2809;
+    border-top: none;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 85%;
+        height: 5px;
+        background: radial-gradient(ellipse, rgba(0, 0, 0, 0.4), transparent);
+        border-radius: 50%;
+    }
+}
+
 .wheelWrapper {
     position: relative;
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -139,22 +368,37 @@
     width: calc(100% + 20px);
     height: calc(100% + 20px);
     border-radius: 50%;
-    background: linear-gradient(135deg, #3a4801 0%, #435b03 50%, #425009 100%);
+    background: linear-gradient(135deg, #7FBE3B 0%, #5a9a2e 50%, #4A7C2C 100%);
     z-index: -1;
     box-shadow:
-        0 0 40px rgba(58, 72, 1, 0.2),
-        0 0 80px rgba(66, 80, 9, 0.3),
-        inset 0 0 20px rgba(255, 215, 0, 0.3);
-    // animation: rotateBorder 3s linear infinite;
+        0 0 30px 5px rgba(127, 190, 59, 0.4),
+        0 0 50px 8px rgba(127, 190, 59, 0.3),
+        0 0 70px 10px rgba(74, 124, 44, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.2),
+        inset 0 0 40px rgba(127, 190, 59, 0.3);
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    animation: borderGlow 2s ease-in-out infinite;
 }
 
-@keyframes rotateBorder {
-    0% {
-        filter: hue-rotate(0deg);
+@keyframes borderGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 60px 10px rgba(127, 190, 59, 0.6),
+            0 0 100px 15px rgba(127, 190, 59, 0.4),
+            0 0 140px 20px rgba(74, 124, 44, 0.3),
+            inset 0 0 30px rgba(255, 255, 255, 0.3),
+            inset 0 0 60px rgba(127, 190, 59, 0.4);
     }
 
-    100% {
-        filter: hue-rotate(360deg);
+    50% {
+        box-shadow:
+            0 0 80px 15px rgba(127, 190, 59, 0.8),
+            0 0 120px 20px rgba(127, 190, 59, 0.6),
+            0 0 160px 20px rgba(74, 124, 44, 0.5),
+            inset 0 0 40px rgba(255, 255, 255, 0.5),
+            inset 0 0 80px rgba(127, 190, 59, 0.6);
     }
 }
 
@@ -162,11 +406,16 @@
     pointer-events: none;
     user-select: none;
     text-shadow:
-        2px 2px 4px rgba(0, 0, 0, 0.9),
-        -1px -1px 2px rgba(0, 0, 0, 0.7),
-        0 0 10px rgba(255, 255, 255, 0.5);
+        0 0 8px rgba(255, 255, 255, 0.9),
+        0 0 12px rgba(255, 255, 255, 0.7),
+        2px 2px 6px rgba(0, 0, 0, 1),
+        -1px -1px 3px rgba(0, 0, 0, 0.8),
+        0 3px 8px rgba(0, 0, 0, 0.9);
     font-family: 'Arial Black', 'Arial Bold', sans-serif;
-    letter-spacing: 0.5px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+    paint-order: stroke fill;
 
     @media (max-width: 480px) {
         font-size: 6px;
@@ -183,23 +432,26 @@
     border-radius: 50%;
     border: 7px solid #4A7C2C;
     background: url("/button.png") center/cover fixed;
-    // background: linear-gradient(135deg, #485a03 0%, #3f4d05 100%);
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 20;
     box-shadow:
         0 12px 35px rgba(0, 0, 0, 0.6),
-        0 0 25px rgba(74, 124, 44, 0.5),
+        0 0 20px rgba(127, 190, 59, 0.4),
+        0 0 35px rgba(127, 190, 59, 0.3),
         inset 0 -5px 12px rgba(0, 0, 0, 0.3),
         inset 0 5px 12px rgba(255, 255, 255, 0.3);
+    animation: buttonBounce 1.5s ease-in-out infinite;
 
     &:hover:not(:disabled) {
-        transform: translate(-50%, -50%) scale(1.08);
+        animation: none;
+        transform: translate(-50%, -50%) scale(1.12);
         box-shadow:
-            0 15px 40px rgba(64, 81, 2, 0.8),
-            0 0 35px rgba(74, 124, 44, 0.7),
+            0 15px 40px rgba(0, 0, 0, 0.8),
+            0 0 30px rgba(127, 190, 59, 0.7),
+            0 0 50px rgba(127, 190, 59, 0.5),
             inset 0 -5px 12px rgba(0, 0, 0, 0.3),
-            inset 0 5px 12px rgba(255, 255, 255, 0.4);
+            inset 0 5px 12px rgba(255, 255, 255, 0.5);
     }
 
     &:active:not(:disabled) {

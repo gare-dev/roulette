@@ -228,6 +228,26 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
             </div>
 
             <div className={styles.wheelWrapper}>
+                {/* Luzes ao redor da roleta */}
+                <div className={styles.lightsContainer}>
+                    {Array.from({ length: 24 }).map((_, i) => {
+                        const angle = (i * 360) / 24;
+                        const radian = (angle * Math.PI) / 180;
+                        const x = Math.cos(radian) * 50;
+                        const y = Math.sin(radian) * 50;
+                        return (
+                            <div
+                                key={i}
+                                className={styles.light}
+                                style={{
+                                    left: `calc(50% + ${x}% - 10px)`,
+                                    top: `calc(50% + ${y}% - 10px)`,
+                                }}
+                            />
+                        );
+                    })}
+                </div>
+
                 <div
                     ref={wheelRef}
                     className={`${styles.wheel} ${isSpinning ? styles.spinning : ''}`}
@@ -306,7 +326,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
 
                             return (
                                 <g key={index}>
-                                    {/* ⭐ AQUI:  Segmento com IMAGEM DE FUNDO ou cor sólida */}
                                     <path
                                         d={pathData}
                                         fill={segment.imagem ? `url(#image-pattern-${index})` : colors[index % colors.length]}
@@ -314,7 +333,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                                         strokeWidth="3"
                                     />
 
-                                    {/* Overlay escuro sobre a imagem para melhor legibilidade do texto */}
                                     {segment.imagem && (
                                         <path
                                             d={pathData}
@@ -350,7 +368,7 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                                             fontWeight="bold"
                                             className={styles.prizeText}
                                         >
-                                            {segment.nome}
+                                            {/* {segment.nome} */}
                                         </text>
                                     </g>
                                 </g>
@@ -383,6 +401,9 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                     </div>
                 </button>
             </div>
+
+            {/* Pedestal */}
+
         </div>
     );
 };
