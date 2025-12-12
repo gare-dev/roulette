@@ -13,7 +13,7 @@ type Props = {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
     try {
-        const roulette = await fetch('http://localhost:3000/api/roulette', {
+        const roulette = await fetch(`${process.env.NODE_ENV === 'production' ? `https://roulette-tau-plum.vercel.app` : 'http://localhost:3000'}/api/roulette`, {
             method: 'GET',
         })
 
@@ -38,7 +38,6 @@ export default function RoulettePage({ roulette }: Props) {
     const [showResult, setShowResult] = useState(false);
 
     const handleSpin = async (): Promise<string> => {
-        const delay = Math.random() * 1500 + 500;
 
         const response = await fetch('/api/winner', { method: 'POST' });
         const data: Prize = await response.json();

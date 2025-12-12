@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import styles from '@/styles/roulette.module.scss';
-import { Prize, RouletteProps } from '@/types/types';
+import { RouletteProps } from '@/types/types';
 
 const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
     const [isSpinning, setIsSpinning] = useState(false);
