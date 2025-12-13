@@ -9,7 +9,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
     const [rotation, setRotation] = useState(0);
     const wheelRef = useRef<HTMLDivElement>(null);
 
-    // Calcular os ângulos de cada segmento
     const calculateSegments = () => {
         const totalSize = prizes.reduce((sum, prize) => sum + prize.tamanho, 0);
         let currentAngle = 0;
@@ -48,7 +47,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
         setIsSpinning(true);
 
         try {
-            // Chamar a API
             const winningPrizeId = await onSpin();
 
             const winningSegment = segments.find(
@@ -99,7 +97,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                     style={{ transform: 'rotate(180deg)' }}
                 >
                     <defs>
-                        {/* Gradiente para ponta metálica */}
                         <linearGradient id="metalTip" x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop offset="0%" stopColor="#A9A9A9" />
                             <stop offset="25%" stopColor="#C0C0C0" />
@@ -108,14 +105,12 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                             <stop offset="100%" stopColor="#808080" />
                         </linearGradient>
 
-                        {/* Gradiente vertical para profundidade da ponta */}
                         <linearGradient id="metalDepth" x1="0%" y1="0%" x2="0%" y2="100%">
                             <stop offset="0%" stopColor="#E8E8E8" />
                             <stop offset="50%" stopColor="#C0C0C0" />
                             <stop offset="100%" stopColor="#808080" />
                         </linearGradient>
 
-                        {/* Sombra */}
                         <filter id="arrowShadow" x="-50%" y="-50%" width="200%" height="200%">
                             <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
                             <feOffset dx="0" dy="6" result="offsetblur" />
@@ -128,7 +123,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                             </feMerge>
                         </filter>
 
-                        {/* Brilho metálico */}
                         <filter id="metalGlow">
                             <feGaussianBlur stdDeviation="3" result="coloredBlur" />
                             <feMerge>
@@ -139,14 +133,12 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                     </defs>
 
                     <g filter="url(#arrowShadow)">
-                        {/* Ponta de metal - sombra base */}
                         <path
                             d="M 50 5 L 85 65 L 15 65 Z"
                             fill="#000"
                             opacity="0.2"
                         />
 
-                        {/* Ponta de metal - lado esquerdo com profundidade */}
                         <path
                             d="M 50 10 L 18 63 L 50 63 Z"
                             fill="url(#metalDepth)"
@@ -154,7 +146,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                             strokeWidth="2"
                         />
 
-                        {/* Ponta de metal - lado direito com profundidade */}
                         <path
                             d="M 50 10 L 82 63 L 50 63 Z"
                             fill="url(#metalTip)"
@@ -162,7 +153,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                             strokeWidth="2"
                         />
 
-                        {/* Linha central da ponta para 3D */}
                         <line
                             x1="50"
                             y1="10"
@@ -172,25 +162,20 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                             strokeWidth="1.5"
                         />
 
-                        {/* Brilho intenso na ponta esquerda */}
                         <path
                             d="M 50 12 L 25 55 L 42 60 Z"
                             fill="rgba(255,255,255,0.5)"
                         />
-
-                        {/* Brilho na ponta direita */}
                         <path
                             d="M 50 12 L 75 55 L 58 60 Z"
                             fill="rgba(255,255,255,0.3)"
                         />
 
-                        {/* Detalhe afiado no topo */}
                         <path
                             d="M 50 10 L 58 28 L 42 28 Z"
                             fill="rgba(255,255,255,0.7)"
                         />
 
-                        {/* Serrilhas na ponta (detalhes) */}
                         <path
                             d="M 35 45 L 30 48 L 32 50"
                             stroke="#303030"
@@ -204,20 +189,17 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                             fill="none"
                         />
 
-                        {/* Sombra lateral esquerda */}
                         <path
                             d="M 50 10 L 18 63 L 30 63 Z"
                             fill="rgba(0, 0, 0, 0.15)"
                         />
 
-                        {/* Sombra lateral direita */}
                         <path
                             d="M 50 10 L 82 63 L 70 63 Z"
                             fill="rgba(0, 0, 0, 0.25)"
                         />
                     </g>
 
-                    {/* Brilho metálico ao redor da ponta */}
                     <g filter="url(#metalGlow)" opacity="0.5">
                         <path
                             d="M 50 10 L 82 63 L 18 63 Z"
@@ -228,7 +210,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
             </div>
 
             <div className={styles.wheelWrapper}>
-                {/* Luzes ao redor da roleta */}
                 <div className={styles.lightsContainer}>
                     {Array.from({ length: 24 }).map((_, i) => {
                         const angle = (i * 360) / 24;
@@ -260,7 +241,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                 >
                     <svg viewBox="0 0 200 200" className={styles.wheelSvg}>
                         <defs>
-                            {/* Criar padrões de imagem para cada segmento que tem imagem */}
                             {segments.map((segment, index) => {
                                 if (segment.imagem) {
                                     return (
@@ -289,13 +269,12 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                                 return null;
                             })}
 
-                            {/* Gradiente para overlay nas imagens */}
                             <linearGradient id="overlayGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                                 <stop offset="0%" stopColor="rgba(0,0,0,0.3)" />
                                 <stop offset="100%" stopColor="rgba(0,0,0,0.1)" />
                             </linearGradient>
 
-                            {/* Gradiente para efeito 3D */}
+
                             <radialGradient id="wheelGradient">
                                 <stop offset="0%" stopColor="rgba(255,255,255,0.2)" />
                                 <stop offset="100%" stopColor="rgba(0,0,0,0.2)" />
@@ -320,11 +299,10 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                                 `Z`,
                             ].join(' ');
 
-                            // Calcular posição do texto
                             const textAngle = (segment.centerAngle - 90) * (Math.PI / 180);
-                            const textRadius = 70;
-                            const textX = 100 + textRadius * Math.cos(textAngle);
-                            const textY = 100 + textRadius * Math.sin(textAngle);
+                            const textRadius = 35;
+                            const textX = 100 + textRadius * Math.cos(textAngle)
+                            const textY = 100 + textRadius * Math.sin(textAngle)
 
                             return (
                                 <g key={index}>
@@ -342,16 +320,13 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                                         />
                                     )}
 
-                                    {/* Efeito de brilho 3D */}
                                     <path
                                         d={pathData}
                                         fill="url(#wheelGradient)"
                                         opacity="0.3"
                                     />
 
-                                    {/* Texto do prêmio */}
                                     <g transform={`rotate(${segment.centerAngle}, ${textX}, ${textY})`}>
-                                        {/* Fundo semi-transparente atrás do texto para legibilidade */}
                                         <rect
                                             x={textX - 25}
                                             y={textY - 10}
@@ -365,24 +340,21 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                                             y={textY}
                                             textAnchor="middle"
                                             dominantBaseline="middle"
-                                            fill="#fff"
+                                            fill="#32024a"
                                             fontSize="8"
                                             fontWeight="bold"
                                             className={styles.prizeText}
                                         >
-                                            {/* {segment.nome} */}
+                                            {segment.nome}
                                         </text>
                                     </g>
                                 </g>
                             );
                         })}
                     </svg>
-
-                    {/* Borda decorativa externa */}
                     <div className={styles.wheelBorder}></div>
                 </div>
 
-                {/* Botão Central */}
                 <button
                     className={`${styles.spinButton} ${isSpinning ? styles.spinning : ''}`}
                     onClick={handleSpin}
@@ -403,9 +375,6 @@ const Roulette: React.FC<RouletteProps> = ({ prizes, onSpin, onResult }) => {
                     </div>
                 </button>
             </div>
-
-            {/* Pedestal */}
-
         </div>
     );
 };

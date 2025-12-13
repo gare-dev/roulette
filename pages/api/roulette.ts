@@ -13,46 +13,53 @@ export default function handler(
 
     const prizes: Prize[] = [
         {
-            nome: 'R$100',
+            nome: '100',
             tamanho: 1,
             prize: '100',
-            imagem: '/peixe.png' // dinheiro
+            imagem: '/peixe.png',
+            logo: '/peixe_logo.png' // dinheiro
         },
         {
-            nome: 'R$2',
+            nome: '2',
             tamanho: 1,
             prize: '2',
-            imagem: '/tartaruga.png' // 2
+            imagem: '/tartaruga.png',
+            logo: '/tartaruga_logo.png' // 2
         },
         {
             nome: 'iPhone',
             tamanho: 1,
             prize: 'iphone',
-            imagem: '/iphone.png' // iphone
+            imagem: '/iphone.png',
+            logo: '/iphone_logo.png' // iphone
         },
         {
-            nome: 'R$5',
+            nome: '5',
             tamanho: 1,
             prize: '5',
-            imagem: '/garca.png' // 5
+            imagem: '/garca.png',
+            logo: '/garca_logo.png' // 5
         },
         {
-            nome: 'R$10',
+            nome: '10',
             tamanho: 1,
             prize: '10',
-            imagem: '/arara.png' // 10
+            imagem: '/arara.png',
+            logo: '/arara_logo.png' // 10
         },
         {
-            nome: 'R$20',
+            nome: '20',
             tamanho: 1,
             prize: '20',
-            imagem: '/macaco.png' // 20
+            imagem: '/macaco.png',
+            logo: '/macaco_logo.png' // 20
         },
         {
-            nome: 'R$50',
+            nome: '50',
             tamanho: 1,
             prize: '50',
-            imagem: '/onca.png' // 50
+            imagem: '/onca.png',
+            logo: '/peixe_logo.png' // 50
         },
     ];
 

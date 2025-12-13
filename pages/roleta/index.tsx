@@ -187,7 +187,7 @@ export default function RoulettePage({ roulette }: Props) {
                                 animation: 'bounce 1s ease-in-out infinite'
                             }}>
                                 <img
-                                    src={result.imagem}
+                                    src={result.logo}
                                     alt={result.nome}
                                     style={{
                                         width: '200px',
@@ -206,7 +206,7 @@ export default function RoulettePage({ roulette }: Props) {
                         {/* Nome do prêmio */}
                         <div style={{
                             background: 'rgba(127, 190, 59, 0.2)',
-                            padding: '1.5rem 2rem',
+                            padding: '1.5rem 1rem',
                             borderRadius: '15px',
                             marginBottom: '2rem',
                             border: '2px solid #7FBE3B'
