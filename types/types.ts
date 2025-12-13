@@ -3,7 +3,7 @@ export interface Prize {
     tamanho: number;
     prize: string;
     imagem?: string;
-    logo: string
+    logo?: string
 }
 
 export interface RouletteProps {
