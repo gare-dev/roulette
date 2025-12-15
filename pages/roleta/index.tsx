@@ -92,13 +92,13 @@ export default function RoulettePage({ roulette }: Props) {
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        background: 'linear-gradient(135deg, rgba(74, 124, 44, 0.98) 0%, rgba(63, 77, 5, 0.98) 100%)',
+                        background: 'linear-gradient(135deg, #35044b 0%, #55076a 100%)',
                         padding: '3rem 4rem',
                         borderRadius: '30px',
                         boxShadow: '0 25px 60px rgba(0,0,0,0.8)',
                         zIndex: 1000,
                         textAlign: 'center',
-                        border: '6px solid #7FBE3B',
+                        border: '6px solid #5e0b71',
                         backdropFilter: 'blur(15px)',
                         animation: 'popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                         minWidth: '500px',
@@ -177,7 +177,7 @@ export default function RoulettePage({ roulette }: Props) {
                             letterSpacing: '2px',
                             marginBottom: '1rem'
                         }}>
-                            🎉 PARABÉNS! 🎉
+                            PARABÉNS, VOCÊ GANHOU!
                         </h2>
 
                         {/* Imagem animada do prêmio */}
@@ -194,7 +194,7 @@ export default function RoulettePage({ roulette }: Props) {
                                         height: '200px',
                                         objectFit: 'cover',
                                         borderRadius: '20px',
-                                        border: '5px solid #7FBE3B',
+                                        border: '5px solid #5e0b71',
                                         boxShadow: '0 15px 35px rgba(74, 124, 44, 0.6)',
                                         display: 'block',
                                         margin: '0 auto'
@@ -209,7 +209,7 @@ export default function RoulettePage({ roulette }: Props) {
                             padding: '1.5rem 1rem',
                             borderRadius: '15px',
                             marginBottom: '2rem',
-                            border: '2px solid #7FBE3B'
+                            border: '2px solid #610d73'
                         }}>
                             <p style={{
                                 margin: 0,
